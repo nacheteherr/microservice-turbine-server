@@ -1,0 +1,33 @@
+# Config server
+spring:
+   application:
+      name: turbine-server
+
+# HTTP Server
+server:
+   port: 1003
+
+# Logging
+logging:
+   file: logs/${spring.application.name}.log
+   level:
+      org.springframework.cloud: 'DEBUG'
+      es.microservices: 'INFO'
+
+# Eureka Client
+eureka:
+   client:
+      registryFetchIntervalSeconds: 5
+      registerWithEureka: true
+      fetchRegistry: true
+      serviceUrl:
+         defaultZone: http://localhost:1001/eureka/
+      instance:
+         leaseRenewalIntervalInSeconds: 10         
+#      initialStatus: UNKNOWN
+
+#Turbine Services Configuration
+turbine:
+  appConfig: clock-service,greeting-service
+  clusterNameExpression: new String('default')
+
